@@ -1,0 +1,47 @@
+﻿@page
+@model Cinema.Pages.Place.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Place[0].IsTaken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Place[0].Hall)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Place[0].Session)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Place) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsTaken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hall.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Session.ShowDate)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PlaceNumber">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PlaceNumber">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PlaceNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
